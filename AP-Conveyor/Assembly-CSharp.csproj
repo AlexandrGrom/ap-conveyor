@@ -58,9 +58,11 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Game\Belt.cs" />
     <Compile Include="Assets\Scripts\Game\ConveyorPart.cs" />
-    <Compile Include="Assets\Scripts\Managers\PoolingManager.cs" />
     <Compile Include="Assets\Scripts\Game\Tap.cs" />
     <Compile Include="Assets\Scripts\Game\Sweetness.cs" />
+    <Compile Include="Assets\Scripts\Pooling System\Components\Pool.cs" />
+    <Compile Include="Assets\Scripts\Pooling System\Components\ItemPool.cs" />
+    <Compile Include="Assets\Scripts\Pooling System\Managers\PoolManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

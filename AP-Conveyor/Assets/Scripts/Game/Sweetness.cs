@@ -1,18 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
+using ManagerPooling;
 using UnityEngine;
 
 public class Sweetness : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Reinitialize()
     {
-        
+        Debug.Log("reinitialized");
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnMouseDown()
     {
-        
+        PoolManager.BackToPool(gameObject, this.GetType());
     }
+    
 }
