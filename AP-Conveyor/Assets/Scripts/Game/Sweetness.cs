@@ -1,16 +1,18 @@
 using ManagerPooling;
 using UnityEngine;
 
-public class Sweetness : MonoBehaviour
+public class Sweetness : MonoBehaviour, IReceivable
 {
-    public void Reinitialize()
-    {
-        Debug.Log("reinitialized");
-    }
+    public Transform Transform => transform;
 
-    private void OnMouseDown()
+    public void Recive()
     {
         PoolManager.BackToPool(gameObject, this.GetType());
     }
-    
+
+    public void Reinitialize()
+    {
+        transform.localScale = Vector3.one;
+        Debug.Log("reinitialized");
+    }
 }

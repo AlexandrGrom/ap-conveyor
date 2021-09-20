@@ -11,7 +11,8 @@ public class ConveyorPart : MonoBehaviour
         sweetness = PoolManager.GetPooledObject(sweetnessPrefab, sweetnessPrefab.GetType())
             .GetComponent<Sweetness>();
         sweetness.transform.parent = transform;
-        sweetness.transform.localPosition = Vector3.zero;
+        sweetness.transform.localPosition = Vector3.back;
+        sweetness.Reinitialize();
     }
 
     public void Reinitialize()
