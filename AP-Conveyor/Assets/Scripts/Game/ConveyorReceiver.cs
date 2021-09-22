@@ -5,7 +5,7 @@ using ManagerPooling;
 
 public class ConveyorReceiver : MonoBehaviour
 {
-    public static Action<ReceivingBox> OnSortElement; 
+    public static Action<ReceivingObject> OnSortElement; 
 
     [SerializeField] private ReceivingBox[] recevingBoxes;
     [SerializeField] private float movingSpeedModifier = 0.2f;
@@ -18,20 +18,34 @@ public class ConveyorReceiver : MonoBehaviour
         OnSortElement += SortElement;
     }
 
-    private void SortElement(ReceivingBox recevingBox)
+    private void SortElement(ReceivingObject recevingBox)
     {
         if (receivable == null) return;
 
-        if (recevingBox.Type == receivable.Type)
-        {
-            //Debug.Log("increment");
-            MoveReceivable(recevingBox.BoxPosition);
-        }
-        else
-        {
-            //Debug.Log("lose");
-            MoveReceivable(recevingBox.DropPosition);
-        }
+        float duration = Vector3.Distance(recevingBox.DropPosition, receivable.Transform.position);
+        Sweetness receivableClone = receivable;
+            receivableClone.Transform.DOMove(recevingBox.DropPosition, duration * movingSpeedModifier).OnComplete(() =>
+            {
+                if (recevingBox.Type == receivableClone.Type)
+                {
+                    receivableClone.Transform.DOScale(Vector3.zero, scalingSpeed).OnComplete(() =>
+                    {
+                        PoolManager.BackToPool(receivableClone.gameObject, receivableClone.GetType());
+                        receivableClone.Recive();
+                        receivable = null;
+                    });
+                }
+                else
+                {
+                    Vector2 position = (recevingBox as ReceivingBox).OutsidePosition;
+                    receivableClone.Transform.DOJump(position, 2f, 1, scalingSpeed).OnComplete(() =>
+                    {
+                        PoolManager.BackToPool(receivableClone.gameObject, receivableClone.GetType());
+                        receivableClone.Recive();
+                        receivable = null;
+                    });
+                }
+            });
     }
 
     private void OnDestroy()
@@ -39,23 +53,6 @@ public class ConveyorReceiver : MonoBehaviour
         OnSortElement -= SortElement;
     }
 
-    private void MoveReceivable(Vector3 position)
-    {
-        if (receivable != null)
-        {
-            Sweetness receivableClone = receivable;
-            float duration = Vector3.Distance(position, receivableClone.Transform.position);
-            receivableClone.Transform.DOMove(position, duration * movingSpeedModifier).OnComplete(()=>
-            {
-                receivableClone.Transform.DOScale(Vector3.zero, scalingSpeed).OnComplete(() => 
-                {
-                    PoolManager.BackToPool(receivableClone.gameObject, receivableClone.GetType());
-                    receivableClone.Recive();
-                    receivable = null;
-                });
-            });
-        }
-    }
 
     public void Swipe(float sign)
     {
@@ -72,7 +69,7 @@ public class ConveyorReceiver : MonoBehaviour
         var recivable = other.GetComponent<Sweetness>();
         if (recivable != null)
         {
-
+            recivable.EnableOutline();
             this.receivable = recivable;
         }
     }

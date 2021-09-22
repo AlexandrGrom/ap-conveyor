@@ -11,14 +11,13 @@ public class SweetnessData : ScriptableObject
 
 public enum SweetnessType
 {
+    none,
     ear,
     cake,
     heart,
-
     pretzel,
     orange,
     star,
-
     jelleyCake,
     pudding,
 }

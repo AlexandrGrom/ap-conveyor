@@ -1,5 +1,6 @@
 using ManagerPooling;
 using UnityEngine;
+using DG.Tweening;
 
 public class Sweetness : MonoBehaviour
 {
@@ -9,6 +10,11 @@ public class Sweetness : MonoBehaviour
     public SweetnessType Type => type;
 
     public Transform Transform => transform;
+
+    public void EnableOutline()
+    {
+        spriteOutline.DOFade(1, 0.1f);
+    }
 
     public void Recive()
     {
