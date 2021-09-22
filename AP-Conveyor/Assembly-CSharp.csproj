@@ -59,7 +59,7 @@
     <Compile Include="Assets\Scripts\Game\ConveyorReciver.cs" />
     <Compile Include="Assets\Scripts\Game\Belt.cs" />
     <Compile Include="Assets\Scripts\Game\ConveyorPart.cs" />
-    <Compile Include="Assets\Scripts\Game\SweetnessData.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjects\SweetnessData.cs" />
     <Compile Include="Assets\Scripts\Game\RecevingBox.cs" />
     <Compile Include="Assets\Scripts\Game\IReceivable.cs" />
     <Compile Include="Assets\Scripts\Pooling System\Components\ItemPool.cs" />
@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\Game\GameplayInput.cs" />
     <Compile Include="Assets\Scripts\Game\Sweetness.cs" />
     <Compile Include="Assets\Scripts\Pooling System\Managers\PoolManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\ConveyorManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

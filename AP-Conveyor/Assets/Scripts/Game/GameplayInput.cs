@@ -3,20 +3,20 @@ using UnityEngine;
 public class GameplayInput : MonoBehaviour
 {
     [SerializeField] private float tolerance;
-    private Camera camera;
+    private Camera mainCamera;
     private ConveyorReciver conveyor;
     private Vector2 mousePosition;
 
     private void Awake()
     {
-        camera = GetComponent<Camera>();
+        mainCamera = GetComponent<Camera>();
     }
 
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (Physics.Raycast(camera.ScreenPointToRay(Input.mousePosition), out RaycastHit hit))
+            if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out RaycastHit hit))
             {
                 conveyor = hit.collider.GetComponent<ConveyorReciver>();
                 if (conveyor != null)

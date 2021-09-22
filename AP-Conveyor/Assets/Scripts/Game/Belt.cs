@@ -17,44 +17,53 @@ public class Belt : MonoBehaviour
         {
             ConveyorPart conveyorPart = Instantiate
             (
-                conveyorPartPrefab,  
+                conveyorPartPrefab,
                 transform
             );
 
             conveyorPart.transform.SetParent(transform);
             conveyorPart.gameObject.name = i.ToString();
-            conveyorPart.transform.localPosition = new Vector3(0, offset * (piecesCount-i-1), 0);
             parts.Enqueue(conveyorPart);
         }
+        SetTilePositions();
     }
 
     int startvalue = 0;
-    private void FixedUpdate()
+    private void Update()
     {
         foreach (var part in parts)
         {
-            part.transform.Translate(Vector3.down * Time.fixedDeltaTime * speed);
+            part.transform.Translate(Vector3.down * Time.deltaTime * speed);
         }
         int i = startvalue;
         foreach (var part in parts)
         {
             if (part.transform.localPosition.y <= offset * parts.Count)
             {
-                part.transform.localPosition = Vector3.zero;
+                //part.transform.localPosition = Vector3.zero;
 
                 parts.Enqueue(parts.Dequeue());
                 startvalue++;
                 part.Reinitialize();
                 if (i % 2 == 0)
                 {
-                   part.Create();
+                    part.Create();
                 }
+                SetTilePositions();
                 break;
 
             }
             i++;
         }
+    }
 
-
+    private void SetTilePositions()
+    {
+        int i = 0;
+        foreach (var part in parts)
+        {
+            part.transform.localPosition = new Vector3(0, offset * (piecesCount - i - 1), 0);
+            i++;
+        }
     }
 }
