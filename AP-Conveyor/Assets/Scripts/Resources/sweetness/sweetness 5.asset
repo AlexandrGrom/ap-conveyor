@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 023245f62dd26bb4a9617a4451d7ccf8, type: 3}
+  m_Name: sweetness 5
+  m_EditorClassIdentifier: 
+  type: 4
+  sprite: {fileID: 21300000, guid: 3d3e47f3f512fa04c9e26512646f5ae6, type: 3}
+  spriteShadow: {fileID: 21300000, guid: 7ca9b2add1e5d1245b0d80487409b4f7, type: 3}
+  spriteOutline: {fileID: 21300000, guid: 377979fd5d4283d43ac4d8fd0f0d9973, type: 3}

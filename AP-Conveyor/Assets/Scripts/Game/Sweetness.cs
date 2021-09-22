@@ -13,6 +13,5 @@ public class Sweetness : MonoBehaviour, IReceivable
     public void Reinitialize()
     {
         transform.localScale = Vector3.one;
-        Debug.Log("reinitialized");
     }
 }

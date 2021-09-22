@@ -17,6 +17,10 @@ public class ConveyorPart : MonoBehaviour
 
     public void Reinitialize()
     {
-
+        if (sweetness)
+        {
+            PoolManager.BackToPool(sweetness.gameObject, sweetness.GetType());
+            sweetness = null;
+        }
     }
 }

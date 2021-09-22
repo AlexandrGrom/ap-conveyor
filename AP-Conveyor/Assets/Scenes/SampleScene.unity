@@ -618,7 +618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ba03b0c02fee8045a07d192d72cff38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tolerance: 20
+  tolerance: 5
 --- !u!1 &971548112
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,7 +1144,7 @@ MonoBehaviour:
   conveyorPartPrefab: {fileID: 6032445832847163741, guid: ae34203b39cf7754fba785ee39359e6c, type: 3}
   speed: 1
   offset: -2.82
-  piecesCount: 6
+  piecesCount: 7
 --- !u!1 &1796682586
 GameObject:
   m_ObjectHideFlags: 0

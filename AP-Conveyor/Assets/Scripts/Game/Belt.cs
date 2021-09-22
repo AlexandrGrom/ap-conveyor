@@ -22,27 +22,39 @@ public class Belt : MonoBehaviour
             );
 
             conveyorPart.transform.SetParent(transform);
-            conveyorPart.transform.localPosition = new Vector3(0, offset * i, 0);
+            conveyorPart.gameObject.name = i.ToString();
+            conveyorPart.transform.localPosition = new Vector3(0, offset * (piecesCount-i-1), 0);
             parts.Enqueue(conveyorPart);
         }
     }
 
+    int startvalue = 0;
     private void FixedUpdate()
     {
-        int i = 0;
         foreach (var part in parts)
         {
             part.transform.Translate(Vector3.down * Time.fixedDeltaTime * speed);
-
+        }
+        int i = startvalue;
+        foreach (var part in parts)
+        {
             if (part.transform.localPosition.y <= offset * parts.Count)
             {
                 part.transform.localPosition = Vector3.zero;
+
+                parts.Enqueue(parts.Dequeue());
+                startvalue++;
+                part.Reinitialize();
                 if (i % 2 == 0)
                 {
-                    part.Create();
+                   part.Create();
                 }
+                break;
+
             }
             i++;
         }
+
+
     }
 }

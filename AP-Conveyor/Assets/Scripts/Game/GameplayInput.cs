@@ -30,7 +30,7 @@ public class GameplayInput : MonoBehaviour
             if (conveyor != null)
             {
                 float swipe = mousePosition.x - Input.mousePosition.x;
-                if (swipe > tolerance)
+                if (Mathf.Abs(swipe) > tolerance)
                 {
                     conveyor.Swipe(swipe);
                 }
