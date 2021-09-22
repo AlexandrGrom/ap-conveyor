@@ -1,11 +1,12 @@
 using ManagerPooling;
 using UnityEngine;
 
-public class Sweetness : MonoBehaviour, IReceivable
+public class Sweetness : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer sprite;
     [SerializeField] private SpriteRenderer spriteOutline;
     private SweetnessType type;
+    public SweetnessType Type => type;
 
     public Transform Transform => transform;
 

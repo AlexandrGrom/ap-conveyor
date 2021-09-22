@@ -4,7 +4,7 @@ using System.Linq;
 
 public class ConveyorManager : MonoBehaviour
 {
-    [SerializeField] private RecevingBox[] boxes;
+    [SerializeField] private ReceivingBox[] boxes;
 
     private static SweetnessData[] sweetnessData;
     private static float maxrepeatTime = 3;

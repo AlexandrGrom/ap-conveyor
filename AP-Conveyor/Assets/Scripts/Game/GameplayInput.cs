@@ -4,7 +4,7 @@ public class GameplayInput : MonoBehaviour
 {
     [SerializeField] private float tolerance;
     private Camera mainCamera;
-    private ConveyorReciver conveyor;
+    private ConveyorReceiver conveyor;
     private Vector2 mousePosition;
 
     private void Awake()
@@ -18,7 +18,7 @@ public class GameplayInput : MonoBehaviour
         {
             if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out RaycastHit hit))
             {
-                conveyor = hit.collider.GetComponent<ConveyorReciver>();
+                conveyor = hit.collider.GetComponent<ConveyorReceiver>();
                 if (conveyor != null)
                 {
                     mousePosition = Input.mousePosition;
