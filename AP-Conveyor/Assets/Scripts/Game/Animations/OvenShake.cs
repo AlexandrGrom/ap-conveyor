@@ -6,6 +6,7 @@ using System;
 
 public class OvenShake : MonoBehaviour
 {
+    [SerializeField] private ParticleSystem ps;
     private void Awake()
     {
         GameStateManager.OnGameStateChange += HandleState;
@@ -21,10 +22,12 @@ public class OvenShake : MonoBehaviour
         if (state == GameState.Game)
         {
             StartCoroutine(nameof(Shake));
+            ps.Play();
         }
         else
         {
             StopCoroutine(nameof(Shake));
+            ps.Stop();
         }
     }
 

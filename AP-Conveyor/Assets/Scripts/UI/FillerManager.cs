@@ -44,15 +44,15 @@ public class FillerManager : MonoBehaviour
         textRect.transform.position = Camera.main.WorldToScreenPoint(position);
 
         incomeText.text = $"+ {ConveyorManager.gamePlaySettings.income}";
-        textRect.DOAnchorPos(textRect.anchoredPosition + Vector2.up * 70, 0.2f);
-        incomeText.DOFade(0, 0.2f);
+        textRect.DOAnchorPos(textRect.anchoredPosition + Vector2.up * 70, 0.5f);
+        incomeText.DOFade(0, 0.5f);
     }
 
     private void UpdateData()
     {
         current.text = $"{CurentAmount}/{ConveyorManager.gamePlaySettings.maxCount}";
 
-        uiProgressBar.FillAmount = (float)ConveyorManager.gamePlaySettings.income
+        uiProgressBar.FillAmount = (float)CurentAmount
             / ConveyorManager.gamePlaySettings.maxCount;
 
         if (CurentAmount >= ConveyorManager.gamePlaySettings.maxCount)
