@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "sweetness", menuName = "SweetnessData")]
+[CreateAssetMenu(fileName = "Sweetness", menuName = "SweetnessData")]
 public class SweetnessData : ScriptableObject
 {
     public SweetnessType type;

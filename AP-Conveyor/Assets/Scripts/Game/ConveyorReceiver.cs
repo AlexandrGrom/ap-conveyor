@@ -30,6 +30,7 @@ public class ConveyorReceiver : MonoBehaviour
                 {
                     receivableClone.Transform.DOScale(Vector3.zero, scalingSpeed).OnComplete(() =>
                     {
+                        FillerManager.OnIncrementCount.Invoke(receivableClone.Transform.position);
                         PoolManager.BackToPool(receivableClone.gameObject, receivableClone.GetType());
                         receivableClone.Recive();
                         receivable = null;
@@ -37,6 +38,11 @@ public class ConveyorReceiver : MonoBehaviour
                 }
                 else
                 {
+                    GameStateManager.CurrentState = GameState.LevelFailed;
+                    if (recevingBox is ConveyorEnd)
+                    {
+                        return;
+                    }
                     Vector2 position = (recevingBox as ReceivingBox).OutsidePosition;
                     receivableClone.Transform.DOJump(position, 2f, 1, scalingSpeed).OnComplete(() =>
                     {

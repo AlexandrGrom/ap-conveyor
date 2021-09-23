@@ -5,7 +5,7 @@ using System.Linq;
 public class ConveyorManager : MonoBehaviour
 {
     [SerializeField] private ReceivingBox[] boxes;
-
+    public static GamePlaySettings gamePlaySettings;
     private static SweetnessData[] sweetnessData;
     private static float maxrepeatTime = 3;
     private static float f = 1f / maxrepeatTime;
@@ -15,6 +15,8 @@ public class ConveyorManager : MonoBehaviour
     {
         List<SweetnessData> sweetnessDataArray = 
             Resources.LoadAll<SweetnessData>("Sweetness").ToList();
+
+        gamePlaySettings = Resources.Load<GamePlaySettings>("Settings");
 
         sweetnessData = new SweetnessData[boxes.Length];
         for (int i = 0; i < boxes.Length; i++)
