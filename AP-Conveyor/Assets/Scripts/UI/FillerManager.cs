@@ -27,6 +27,10 @@ public class FillerManager : MonoBehaviour
     private void IncrementCount(Vector2 position)
     {
         CurentAmount += ConveyorManager.gamePlaySettings.income;
+        if (CurentAmount >= ConveyorManager.gamePlaySettings.maxCount)
+        {
+            GameStateManager.CurrentState = GameState.LevelComplete;
+        }
         UpdateData();
 
         counter++;
@@ -37,7 +41,7 @@ public class FillerManager : MonoBehaviour
         }
 
         incomeText.DOFade(1, 0f);
-        textRect.anchoredPosition = Camera.main.WorldToScreenPoint(position);
+        textRect.transform.position = Camera.main.WorldToScreenPoint(position);
 
         incomeText.text = $"+ {ConveyorManager.gamePlaySettings.income}";
         textRect.DOAnchorPos(textRect.anchoredPosition + Vector2.up * 70, 0.2f);

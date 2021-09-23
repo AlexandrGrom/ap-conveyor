@@ -22,36 +22,40 @@ public class ConveyorReceiver : MonoBehaviour
     {
         if (receivable == null) return;
 
+
         float duration = Vector3.Distance(recevingBox.DropPosition, receivable.Transform.position);
         Sweetness receivableClone = receivable;
-            receivableClone.Transform.DOMove(recevingBox.DropPosition, duration * movingSpeedModifier).OnComplete(() =>
+        if (recevingBox.Type != receivableClone.Type)
+        {
+            GameStateManager.CurrentState = GameState.LevelFailed;
+        }
+        receivableClone.Transform.DOMove(recevingBox.DropPosition, duration * movingSpeedModifier).OnComplete(() =>
+        {
+            if (recevingBox.Type == receivableClone.Type)
             {
-                if (recevingBox.Type == receivableClone.Type)
+                receivableClone.Transform.DOScale(Vector3.zero, scalingSpeed).OnComplete(() =>
                 {
-                    receivableClone.Transform.DOScale(Vector3.zero, scalingSpeed).OnComplete(() =>
-                    {
-                        FillerManager.OnIncrementCount.Invoke(receivableClone.Transform.position);
-                        PoolManager.BackToPool(receivableClone.gameObject, receivableClone.GetType());
-                        receivableClone.Recive();
-                        receivable = null;
-                    });
-                }
-                else
+                    FillerManager.OnIncrementCount.Invoke(receivableClone.Transform.position);
+                    PoolManager.BackToPool(receivableClone.gameObject, receivableClone.GetType());
+                    receivableClone.Recive();
+                    receivable = null;
+                });
+            }
+            else
+            {
+                if (recevingBox is ConveyorEnd)
                 {
-                    GameStateManager.CurrentState = GameState.LevelFailed;
-                    if (recevingBox is ConveyorEnd)
-                    {
-                        return;
-                    }
-                    Vector2 position = (recevingBox as ReceivingBox).OutsidePosition;
-                    receivableClone.Transform.DOJump(position, 2f, 1, scalingSpeed).OnComplete(() =>
-                    {
-                        PoolManager.BackToPool(receivableClone.gameObject, receivableClone.GetType());
-                        receivableClone.Recive();
-                        receivable = null;
-                    });
+                    return;
                 }
-            });
+                Vector2 position = (recevingBox as ReceivingBox).OutsidePosition;
+                receivableClone.Transform.DOJump(position, 2f, 1, scalingSpeed).OnComplete(() =>
+                {
+                    PoolManager.BackToPool(receivableClone.gameObject, receivableClone.GetType());
+                    receivableClone.Recive();
+                    receivable = null;
+                });
+            }
+        });
     }
 
     private void OnDestroy()

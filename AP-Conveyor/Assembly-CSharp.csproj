@@ -80,6 +80,7 @@
     <Compile Include="Assets\Scripts\UI\FillerManager.cs" />
     <Compile Include="Assets\Scripts\UI\Screens\LoseScreen.cs" />
     <Compile Include="Assets\Scripts\UI\Screens\EmptyScreen.cs" />
+    <Compile Include="Assets\Scripts\UI\Screens\WinScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

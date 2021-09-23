@@ -40,7 +40,7 @@ public class Belt : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameStateManager.OnGameStateChange += HandleState;
+        GameStateManager.OnGameStateChange -= HandleState;
     }
 
     private void HandleState(GameState state)

@@ -7,10 +7,11 @@ using UnityEngine.UI;
 using TMPro;
 using ManagerPooling;
 
-public class LoseScreen : UIScreen
+
+public class WinScreen : UIScreen
 {
     [SerializeField] private Image back;
-    [SerializeField] private Image youLose;
+    [SerializeField] private Image youWin;
     [SerializeField] private Button retry;
     [SerializeField] private TextMeshProUGUI retryText;
 
@@ -32,7 +33,7 @@ public class LoseScreen : UIScreen
     {
         yield return null;
 
-        youLose.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
+        youWin.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
         yield return new WaitForSeconds(0.2f);
         PoolManager.ReturnToRoot();
         DOTween.KillAll();
@@ -51,14 +52,14 @@ public class LoseScreen : UIScreen
 
     IEnumerator Enabling()
     {
-        youLose.DOFade(0, 0);
+        youWin.DOFade(0, 0);
         retryText.DOFade(0, 0);
         back.DOFade(0, 0);
         yield return new WaitForSeconds(0.5f);
         yield return null;
         back.DOFade(0.65f, 0.2f);
-        youLose.DOFade(1, 0.2f);
-        youLose.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.InCubic);
+        youWin.DOFade(1, 0.2f);
+        youWin.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.InCubic);
         yield return null;
         yield return new WaitForSeconds(1.5f);
         retryText.DOFade(1, 0.2f);
