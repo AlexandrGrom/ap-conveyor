@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5571328a329c6e84a8aff79d8b480f57, type: 3}
   m_Name: Settings
   m_EditorClassIdentifier: 
-  conveyorStartSpeed: 1
+  conveyorSpeed: 1
   multiplyer: 1.2
   maxCount: 250
   itemsBeforeIncrement: 5
+  income: 10

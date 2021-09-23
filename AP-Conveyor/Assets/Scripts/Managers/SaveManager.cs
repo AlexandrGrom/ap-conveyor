@@ -19,6 +19,11 @@ public static class SaveManager
             {
                 saveData.score[i] = newScore;
                 saveData.datetime[i] = DateTime.Now.ToString();
+                for (int j = i+1; j < saveData.score.Length-1; j++)
+                {
+                    saveData.score[j] = oldData.score[j-1];
+                    saveData.datetime[j] = oldData.datetime[j-1];
+                }
                 break;
             }
         } 
