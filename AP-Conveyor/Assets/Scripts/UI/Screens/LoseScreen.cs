@@ -51,6 +51,8 @@ public class LoseScreen : UIScreen
 
     IEnumerator Enabling()
     {
+        SaveManager.SaveIntoJson(FillerManager.CurentAmount);
+
         youLose.DOFade(0, 0);
         retryText.DOFade(0, 0);
         back.DOFade(0, 0);

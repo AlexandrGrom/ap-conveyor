@@ -52,6 +52,8 @@ public class WinScreen : UIScreen
 
     IEnumerator Enabling()
     {
+        SaveManager.SaveIntoJson(FillerManager.CurentAmount);
+
         youWin.DOFade(0, 0);
         retryText.DOFade(0, 0);
         back.DOFade(0, 0);
